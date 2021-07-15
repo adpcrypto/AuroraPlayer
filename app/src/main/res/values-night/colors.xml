@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+
+    <color name="nightblackelseblue">#000</color>
+
+    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#06468A</color>
+    <color name="colorPrimaryDark">#000D1B</color>
+    <color name="colorAccent">#CE63ACFA</color>
+    <color name="colorGreenTint">#C3008C76</color>
+
+    <color name="nav_view">#00002C</color>
+
+
+    <color name="settings_back">#999999</color>
+    <color name="searchback">#777777</color>
+    <color name="dialogbutoncolor">#FFFFFF</color>
+    <color name="textwhite">#fff</color>
+    <color name="head_color">#F5005DA5</color>
+</resources>

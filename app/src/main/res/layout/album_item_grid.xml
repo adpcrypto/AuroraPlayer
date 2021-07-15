@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_margin="4dp"
+    android:padding="5dp"
+    android:background="@drawable/album_border"
+    android:layout_centerHorizontal="true"
+     android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="110dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        android:id="@+id/folder_img"
+        android:layout_marginStart="10dp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/folder_img">
+        <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="13dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxHeight="50dp"
+            android:maxLength="25"
+            android:id="@+id/folder_name_text"
+            android:textColor="@color/textwhite"/>
+        <TextView
+            app:layout_constraintTop_toBottomOf="@+id/folder_name_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/folder_no_text"
+            android:textColor="#E6ABE4FF"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</RelativeLayout>

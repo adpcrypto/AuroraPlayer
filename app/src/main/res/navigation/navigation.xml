@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/navigation_audio">
+
+    <fragment
+        android:id="@+id/navigation_audio"
+        android:name="com.adpcrypto.auroraplayer.AudioListFragment"
+        android:label="frag_fold_alb"
+        tools:layout="@layout/fragment_audio_list"/>
+
+    <fragment
+        android:id="@+id/navigation_favourites"
+        android:name="com.adpcrypto.auroraplayer.FavouriteListFragment"
+        android:label="frag_fav"
+        tools:layout="@layout/fragment_audio_list">
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.adpcrypto.auroraplayer.SettingsFragment"
+        android:label="frag_settings"
+        tools:layout="@layout/fragment_audio_list">
+
+    </fragment>
+</navigation>

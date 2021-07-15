@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/path"
+        android:text="gfg"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:textSize="17sp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/path"
+        android:id="@+id/lin1"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="File Name:"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/file_name_text"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/lin2"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lin1"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Size:"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/file_size_text"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/lin3"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lin2"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Duration:"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/file_dur_text"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/lin6"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lin3"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Album:"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/file_album_text"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/lin7"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lin6"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Artist:"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/file_artist_text"/>
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

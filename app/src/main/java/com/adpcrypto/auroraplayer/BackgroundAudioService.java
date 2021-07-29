@@ -77,7 +77,6 @@ public class BackgroundAudioService extends Service {
             }
 
 
-
             @Override
             public void onIsPlayingChanged(boolean isPlaying) {
                 if(!isPlaying){

@@ -1,6 +1,7 @@
 package com.adpcrypto.auroraplayer;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -36,15 +37,11 @@ public class StartActivity extends AppCompatActivity {
     static List<AudioFile> audioFiles;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         loadDarkMode();
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         getSupportActionBar().hide();
         mContent = getApplicationContext();
-
-
     }
 
 

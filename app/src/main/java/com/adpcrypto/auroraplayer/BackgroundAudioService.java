@@ -22,14 +22,12 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.adpcrypto.auroraplayer.classes.PlayerSingleton;
-import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.ConcatenatingMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.ui.PlayerNotificationManager;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
@@ -52,7 +50,7 @@ public class BackgroundAudioService extends Service {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
-        player = ExoPlayerFactory.newSimpleInstance(context, new DefaultTrackSelector());
+        player = new SimpleExoPlayer.Builder(context).build();
         playerNotificationManager = PlayerNotificationManager.createWithNotificationChannel(context, "My_channel_id", R.string.app_name, R.string.app_name, 123, mediaDescriptionAdapter, new PlayerNotificationManager.NotificationListener() {
             @Override
             public void onNotificationCancelled(int notificationId, boolean dismissedByUser) {
@@ -65,10 +63,9 @@ public class BackgroundAudioService extends Service {
                     startForeground(notificationId,notification);
             }
         });
-        player.addListener(new Player.EventListener() {
-
+        player.addListener(new Player.Listener() {
             @Override
-            public void onPlaybackStateChanged(int state) {
+            public void onMediaItemTransition(MediaItem mediaItem, int reason) {
                 int pos = player.getCurrentWindowIndex();
                 PlayerSingleton.getInstance().audioFile = PlayerSingleton.getInstance().playingList.get(pos);
                 PlayerActivity.t1.setText(PlayerSingleton.getInstance().audioFile.getFileName());
@@ -77,9 +74,10 @@ public class BackgroundAudioService extends Service {
                 } else {
                     PlayerActivity.t2.setText(PlayerSingleton.getInstance().audioFile.getAlbum_artist()+"|"+PlayerSingleton.getInstance().audioFile.getAlbum());
                 }
-                toaast cheyth nokkanam
             }
-            
+
+
+
             @Override
             public void onIsPlayingChanged(boolean isPlaying) {
                 if(!isPlaying){
@@ -90,6 +88,18 @@ public class BackgroundAudioService extends Service {
                 }
             }
         });
+        /*player.addListener(new Player.EventListener() {
+
+            @Override
+            public void onPlaybackStateChanged(int state) {
+
+            }
+            
+            @Override
+            public void onIsPlayingChanged(boolean isPlaying) {
+
+            }
+        });*/
     }
 
 

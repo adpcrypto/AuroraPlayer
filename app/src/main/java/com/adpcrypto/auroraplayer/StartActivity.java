@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.Looper;
 import android.provider.MediaStore;
 import android.widget.Toast;
@@ -51,7 +52,7 @@ public class StartActivity extends AppCompatActivity {
             Toast.makeText(StartActivity.this, "Storage permission is required", Toast.LENGTH_SHORT).show();
             ActivityCompat.requestPermissions(StartActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},101);
         }else{
-            new LongOperation().execute("");
+            new LongOperation().execute();
         }
     }
 
@@ -83,7 +84,7 @@ public class StartActivity extends AppCompatActivity {
                 requestPermission();
                 return;
             }
-            new LongOperation().execute("");
+            new LongOperation().execute();
         }
     }
 
@@ -109,7 +110,9 @@ public class StartActivity extends AppCompatActivity {
                 MediaStore.Audio.Media.ARTIST,
                 MediaStore.Audio.Media.TITLE
         };
-        context.getContentResolver().registerContentObserver(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,true, new MyContentObserver(new Handler(Looper.getMainLooper()), context));
+        HandlerThread backgroundHandlerThread = new HandlerThread("contentObserverThread");
+        backgroundHandlerThread.start();
+        context.getContentResolver().registerContentObserver(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,true, new MyContentObserver(new Handler(backgroundHandlerThread.getLooper()), context));
         Cursor cursor = context.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,projection,null,null,null);
         if(cursor !=null){
             while(cursor.moveToNext()){
@@ -133,6 +136,8 @@ public class StartActivity extends AppCompatActivity {
                 temp.add( audioFile1);
             }
             cursor.close();
+            backgroundHandlerThread.quitSafely();
+            backgroundHandlerThread =null;
             audioFileDatabase.audioFileDao().clearAudioDatabase();
             for(int j=0;j<temp.size();j++) {
                 audioFileDatabase.audioFileDao().addAudioFile(temp.get(j));
@@ -166,19 +171,34 @@ public class StartActivity extends AppCompatActivity {
         }
     }
 
-    private class LongOperation extends AsyncTask<String, Void, String> {
+    private class LongOperation extends AsyncTask<Void, Void, Void> {
 
-        @Override
+        /*@Override
         protected String doInBackground(String... params) {
             audioFileDatabase = AudioFileDatabase.getDatabase(getApplicationContext());
             audioFiles = getAudioFiles(getApplicationContext());
-            return "RESULT";
         }
-
         @Override
         protected void onPostExecute(String result) {
             startActivity(new Intent(StartActivity.this, MainActivity.class));
             finish();
+        }*/
+
+
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+            startActivity(new Intent(StartActivity.this, MainActivity.class));
+            finish();
+        }
+
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            audioFileDatabase = AudioFileDatabase.getDatabase(getApplicationContext());
+            audioFiles = getAudioFiles(getApplicationContext());
+            return null;
         }
 
         @Override

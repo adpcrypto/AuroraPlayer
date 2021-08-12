@@ -110,9 +110,9 @@ public class StartActivity extends AppCompatActivity {
                 MediaStore.Audio.Media.ARTIST,
                 MediaStore.Audio.Media.TITLE
         };
-        HandlerThread backgroundHandlerThread = new HandlerThread("contentObserverThread");
-        backgroundHandlerThread.start();
-        context.getContentResolver().registerContentObserver(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,true, new MyContentObserver(new Handler(backgroundHandlerThread.getLooper()), context));
+        //HandlerThread backgroundHandlerThread = new HandlerThread("contentObserverThread");
+        //backgroundHandlerThread.start();
+        context.getContentResolver().registerContentObserver(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,true, new MyContentObserver(new Handler(Looper.getMainLooper()), context));
         Cursor cursor = context.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,projection,null,null,null);
         if(cursor !=null){
             while(cursor.moveToNext()){
@@ -136,8 +136,8 @@ public class StartActivity extends AppCompatActivity {
                 temp.add( audioFile1);
             }
             cursor.close();
-            backgroundHandlerThread.quitSafely();
-            backgroundHandlerThread =null;
+            //backgroundHandlerThread.quitSafely();
+            //backgroundHandlerThread =null;
             audioFileDatabase.audioFileDao().clearAudioDatabase();
             for(int j=0;j<temp.size();j++) {
                 audioFileDatabase.audioFileDao().addAudioFile(temp.get(j));
